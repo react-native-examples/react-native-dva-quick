@@ -1,10 +1,6 @@
 import React, { PureComponent } from 'react'
-import { BackHandler, Animated, Easing } from 'react-native'
-import {
-  createStackNavigator,
-  createBottomTabNavigator,
-  NavigationActions,
-} from 'react-navigation'
+import { BackHandler } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 import {
   reduxifyNavigator,
   createReactNavigationReduxMiddleware,
@@ -12,72 +8,7 @@ import {
 } from 'react-navigation-redux-helpers'
 import { connect } from 'react-redux'
 
-import Loading from './containers/Loading'
-import Login from './containers/Login'
-import Home from './containers/Home'
-import Account from './containers/Account'
-import Detail from './containers/Detail'
-
-const HomeNavigator = createBottomTabNavigator({
-  Home: { screen: Home },
-  Account: { screen: Account },
-})
-
-HomeNavigator.navigationOptions = ({ navigation }) => {
-  const { routeName } = navigation.state.routes[navigation.state.index]
-
-  return {
-    headerTitle: routeName,
-  }
-}
-
-const MainNavigator = createStackNavigator(
-  {
-    HomeNavigator: { screen: HomeNavigator },
-    Detail: { screen: Detail },
-  },
-  {
-    headerMode: 'float',
-  }
-)
-
-const AppNavigator = createStackNavigator(
-  {
-    Main: { screen: MainNavigator },
-    Login: { screen: Login },
-  },
-  {
-    headerMode: 'none',
-    mode: 'modal',
-    navigationOptions: {
-      gesturesEnabled: false,
-    },
-    transitionConfig: () => ({
-      transitionSpec: {
-        duration: 300,
-        easing: Easing.out(Easing.poly(4)),
-        timing: Animated.timing,
-      },
-      screenInterpolator: sceneProps => {
-        const { layout, position, scene } = sceneProps
-        const { index } = scene
-
-        const height = layout.initHeight
-        const translateY = position.interpolate({
-          inputRange: [index - 1, index, index + 1],
-          outputRange: [height, 0, 0],
-        })
-
-        const opacity = position.interpolate({
-          inputRange: [index - 1, index - 0.99, index],
-          outputRange: [0, 1, 1],
-        })
-
-        return { opacity, transform: [{ translateY }] }
-      },
-    }),
-  }
-)
+import AppNavigator from './navigation/AppNavigator'
 
 export const routerReducer = createNavigationReducer(AppNavigator)
 
@@ -122,8 +53,7 @@ class Router extends PureComponent {
   }
 
   render() {
-    const { app, dispatch, router } = this.props
-    if (app.loading) return <Loading />
+    const { dispatch, router } = this.props
 
     return <App dispatch={dispatch} state={router} />
   }
