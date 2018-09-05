@@ -7,68 +7,62 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { connect } from 'react-redux'
+import { Button } from './components/Button'
 
-export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-  }
+function App({ home, dispatch }) {
+  const { text } = home
+  const changetext = () => dispatch({ type: 'home/fetch' })
+  const resetTitle = () => dispatch({ type: 'home/reset', payload: '123' })
+  return (
+    <View style={styles.container}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={styles.contentContainer}
+      >
+        <Button onPress={resetTitle}>Reset</Button>
+        <View style={styles.welcomeContainer}>
+          <Text style={styles.welcomeText}>Hello {text}</Text>
+        </View>
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
-        >
-          <View style={styles.welcomeContainer}>
-            <Text style={styles.welcomeText}>Hello Dva Native</Text>
-          </View>
-
-          <View style={styles.getStartedContainer}>
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View
-              style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-            >
-              <Text style={styles.codeHighlightText}>
-                screens/HomeScreen.js
-              </Text>
-            </View>
-
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
-            </Text>
-          </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity
-              onPress={this._handleHelpPress}
-              style={styles.helpLink}
-            >
-              <Text style={styles.helpLinkText}>
-                Help, it didn’t automatically reload!
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>
-            This is a tab bar. You can edit it in:
-          </Text>
+        <View style={styles.getStartedContainer}>
+          <Text style={styles.getStartedText}>Get started by opening</Text>
 
           <View
-            style={[styles.codeHighlightContainer, styles.navigationFilename]}
+            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
           >
-            <Text style={styles.codeHighlightText}>
-              navigation/MainTabNavigator.js
-            </Text>
+            <Text style={styles.codeHighlightText}>pages/home</Text>
           </View>
+
+          <Text style={styles.getStartedText}>
+            Change this text and your app will automatically reload.
+          </Text>
+        </View>
+
+        <View style={styles.helpContainer}>
+          <TouchableOpacity onPress={changetext} style={styles.helpLink}>
+            <Text style={styles.helpLinkText}>Click Me！Change The Title.</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+
+      <View style={styles.tabBarInfoContainer}>
+        <Text style={styles.tabBarInfoText}>
+          This is a tab bar. You can edit it in:
+        </Text>
+
+        <View
+          style={[styles.codeHighlightContainer, styles.navigationFilename]}
+        >
+          <Text style={styles.codeHighlightText}>
+            navigation/MainTabNavigator.js
+          </Text>
         </View>
       </View>
-    )
-  }
+    </View>
+  )
 }
+export default connect(({ home }) => ({ home }))(App)
 
 const styles = StyleSheet.create({
   container: {

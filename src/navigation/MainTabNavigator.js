@@ -5,8 +5,8 @@ import {
   createBottomTabNavigator,
 } from 'react-navigation'
 
-import HomeScreen from '../pages/HomeScreen'
-import LinksScreen from '../pages/LinksScreen'
+import HomeScreen from '../pages/home/page'
+import LinksScreen from '../pages/other/page'
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
