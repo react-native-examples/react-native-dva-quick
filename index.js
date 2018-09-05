@@ -1,4 +1,4 @@
-import './app/index'
+import './src/index'
 
 console.ignoredYellowBox = [
   'Warning: componentWillMount is deprecated',

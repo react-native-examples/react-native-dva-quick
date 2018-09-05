@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "prettier": "prettier --write --single-quote --no-semi --trailing-comma es5 --print-width 80 \"app/**/*.js\"",
-    "lint": "eslint app",
+    "prettier": "prettier --write --single-quote --no-semi --trailing-comma es5 --print-width 80 \"src/**/*.js\"",
+    "lint": "eslint src",
     "format": "yarn prettier && yarn lint --fix",
     "precommit": "yarn format"
   },
