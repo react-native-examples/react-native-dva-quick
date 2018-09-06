@@ -6,7 +6,7 @@ import {
 } from 'react-navigation'
 
 import HomeScreen from '../pages/home/page'
-import LinksScreen from '../pages/other/page'
+import PersonScreen from '../pages/other/page'
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -22,12 +22,13 @@ HomeStack.navigationOptions = {
   ),
 }
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const PersonStack = createStackNavigator({
+  Person: PersonScreen,
 })
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+PersonStack.navigationOptions = {
+  tabBarLabel: 'Person',
+  headerTitle:'123',
   tabBarIcon: ({ focused, tintColor }) => (
     <Image
       style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
@@ -35,11 +36,18 @@ LinksStack.navigationOptions = {
     />
   ),
 }
-
-export default createBottomTabNavigator({
+const TabBar = createBottomTabNavigator({
   HomeStack,
-  LinksStack,
+  PersonStack,
 })
+TabBar.navigationOptions = ({ navigation }) => {
+  const { routeName } = navigation.state.routes[navigation.state.index]
+
+  return {
+    headerTitle: routeName,
+  }
+}
+export default TabBar;
 
 const styles = StyleSheet.create({
   container: {

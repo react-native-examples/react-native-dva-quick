@@ -2,7 +2,7 @@ import React from 'react'
 import { AppRegistry } from 'react-native'
 
 import dva from './utils/dva'
-import Router, { routerMiddleware, routerReducer } from './router'
+import Router, { routerMiddleware, routerReducer } from './helpers'
 import appModel from './models/app'
 import home from './pages/home/models/home'
 import other from './pages/other/models/other'
@@ -18,5 +18,5 @@ const app = dva({
 })
 
 const App = app.start(<Router />)
-
+global.app = app;
 AppRegistry.registerComponent('DvaStarter', () => App)

@@ -68,7 +68,7 @@ export default function request(url, options) {
       return response.json()
     })
     .catch(e => {
-      const dispatch = window.g_app._store.dispatch
+      const dispatch = global.app._store.dispatch
       const status = e.name
       if (status === 401) {
         dispatch({
@@ -82,7 +82,7 @@ export default function request(url, options) {
       //   return
       // }
       // if (status >= 404 && status < 422) {
-      //   return 
+      //   return
       // }
     })
 }

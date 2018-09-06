@@ -6,6 +6,12 @@ export default {
     text: 'Dva Native',
     list: [],
   },
+  subscriptions: {
+    setup(props) {
+      console.log(props)
+      // dispatch({ type: 'loadStorage' })
+    },
+  },
   effects: {
     *reset({ payload }, { put }) {
       yield put({
