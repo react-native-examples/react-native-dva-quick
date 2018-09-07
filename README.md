@@ -2,6 +2,7 @@
 
 这是一个ReactNative开发脚手架，基础代码来自[@nihgwu](https://github.com/nihgwu)的[react-native-dva-starter](https://github.com/nihgwu/react-native-dva-starter)，考虑到后续如果[umi](https://github.com/umijs/umi)兼容RN的话，所以目录结构保持umi风格。
 
+#### 使用这个脚手架，需要用到的最小的知识库[dva-knowledgema](https://github.com/dvajs/dva-knowledgemap)
 
 ## 用法说明
 ### 安装whale-oss-cli
@@ -43,7 +44,7 @@ whale-oss g rnpage List #比如这里我们创建一个List页面
 │ │   │ └── /List/     # List services
 │ │   └──  page.js       
 ```
-## 注意：这里创建完页面需要``手动``添加路由和引入model
+## 注意：这里创建完页面需要**手动**添加路由和引入model
 #### 1.在``/src/index.js``中添加路由
 ```
 + import list from './pages/List/models/List'
