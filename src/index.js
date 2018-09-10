@@ -18,5 +18,5 @@ const app = dva({
 })
 
 const App = app.start(<Router />)
-global.app = app;
+global.app = app
 AppRegistry.registerComponent('DvaStarter', () => App)

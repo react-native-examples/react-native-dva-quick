@@ -28,7 +28,7 @@ const PersonStack = createStackNavigator({
 
 PersonStack.navigationOptions = {
   tabBarLabel: 'Person',
-  headerTitle:'123',
+  headerTitle: '123',
   tabBarIcon: ({ focused, tintColor }) => (
     <Image
       style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
@@ -47,7 +47,7 @@ TabBar.navigationOptions = ({ navigation }) => {
     headerTitle: routeName,
   }
 }
-export default TabBar;
+export default TabBar
 
 const styles = StyleSheet.create({
   container: {

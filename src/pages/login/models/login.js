@@ -1,31 +1,29 @@
-import {
-  query
-} from "../services/login"
+import { query } from '../services/login'
+
 export default {
   namespace: 'login',
   state: {
     text: 'page work',
-    list: []
+    list: [],
   },
   effects: {
-    * fetch({payload}, {
-      put
-    }) {
+    *fetch({ payload }, { put }) {
       const data = yield query(payload)
       console.log(data)
       yield put({
         type: 'save',
         payload: {
-          text: JSON.stringify(data)
-        }
-      });
-    }
+          text: JSON.stringify(data),
+        },
+      })
+    },
   },
   reducers: {
     save(state, action) {
-      return { ...state,
-        ...action.payload
-      };
+      return {
+        ...state,
+        ...action.payload,
+      }
     },
   },
-};
+}

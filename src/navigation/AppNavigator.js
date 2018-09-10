@@ -1,11 +1,15 @@
-import { createSwitchNavigator,createStackNavigator, Animated, Easing } from 'react-navigation'
+import {
+  createSwitchNavigator,
+  createStackNavigator,
+  Animated,
+  Easing,
+} from 'react-navigation'
 
 import MainTabNavigator from './MainTabNavigator'
 import LoginScreen from '../pages/login/page'
 import AuthLoadingScreen from '../pages/auth/page'
 
-
-const AuthStack = createStackNavigator({ SignIn: LoginScreen });
+const AuthStack = createStackNavigator({ SignIn: LoginScreen })
 export default createSwitchNavigator(
   {
     // You could add another route here for authentication.
